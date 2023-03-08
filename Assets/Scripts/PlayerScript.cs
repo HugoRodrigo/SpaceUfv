@@ -7,8 +7,8 @@ public class PlayerScript : MonoBehaviour
     public float speed = 1;
     public Vector2 screenLimite;
     public GameObject projectile;
-    public Transform shootPositon;
-    public Vector2 shootDirection = new Vector2(1,0);
+    public Transform[] shootPositon;
+    public Vector2[] shootDirection;
     public float shootSpeed = 300;
     public float shootCD = .5f;
     float shootTimer = 0;
@@ -32,10 +32,13 @@ public class PlayerScript : MonoBehaviour
     {
         if(Input.GetAxisRaw("Jump") != 0 && shootTimer>= shootCD)
         {
-            GameObject shoot = Instantiate(projectile);
-            shoot.transform.position = shootPositon.position;
-            shoot.transform.up = shootDirection.normalized;
-            shoot.GetComponent<Rigidbody2D>().AddForce(shootDirection.normalized * shootSpeed);
+            for (int i = 0; i < shootPositon.Length; i++)
+            {
+                GameObject shoot = Instantiate(projectile);
+                shoot.transform.position = shootPositon[i].position;
+                shoot.transform.up = shootDirection[i].normalized;
+                shoot.GetComponent<Rigidbody2D>().AddForce(shootDirection[i].normalized * shootSpeed);
+            }
             shootTimer = 0;
         }
     }
