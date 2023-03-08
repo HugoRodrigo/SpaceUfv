@@ -6,6 +6,15 @@ public class PlayerScript : MonoBehaviour
 {
     public float speed = 1;
     public Vector2 screenLimite;
+    public GameObject projectile;
+    public Transform shootPositon;
+    public Vector2 shootDirection = new Vector2(1,0);
+    public float shootSpeed = 300;
+    public float shootCD = .5f;
+    float shootTimer = 0;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +24,20 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        shootTimer += Time.deltaTime;
         Moviment();
+        Shoot();
+    }
+    void Shoot()
+    {
+        if(Input.GetAxisRaw("Jump") != 0 && shootTimer>= shootCD)
+        {
+            GameObject shoot = Instantiate(projectile);
+            shoot.transform.position = shootPositon.position;
+            shoot.transform.up = shootDirection.normalized;
+            shoot.GetComponent<Rigidbody2D>().AddForce(shootDirection.normalized * shootSpeed);
+            shootTimer = 0;
+        }
     }
     void Moviment()
     {
