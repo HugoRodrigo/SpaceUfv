@@ -47,8 +47,10 @@ public class PlayerScript : MonoBehaviour
         float hMove = Input.GetAxisRaw("Horizontal");
         float vMove = Input.GetAxisRaw("Vertical");
         transform.Translate(new Vector3(hMove, vMove).normalized * speed * Time.deltaTime);
-        if (transform.position.x > screenLimite.x) transform.position = new Vector3(-screenLimite.x + .2f, transform.position.y);
-        if (transform.position.x < -screenLimite.x) transform.position = new Vector3(screenLimite.x - .2f, transform.position.y);
+        if (transform.position.x > screenLimite.x) transform.position = new Vector3(screenLimite.x, transform.position.y);
+        //if (transform.position.x > screenLimite.x) transform.position = new Vector3(-screenLimite.x + .2f, transform.position.y);
+        if (transform.position.x < -screenLimite.x) transform.position = new Vector3(-screenLimite.x, transform.position.y);
+        //if (transform.position.x < -screenLimite.x) transform.position = new Vector3(screenLimite.x - .2f, transform.position.y);
         if (transform.position.y > screenLimite.y) transform.position = new Vector3(transform.position.x, -screenLimite.y + .2f);
         if (transform.position.y < -screenLimite.y) transform.position = new Vector3(transform.position.x, screenLimite.y -+ .2f);
     }
