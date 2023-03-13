@@ -5047,6 +5047,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   screenLimite: {x: 9, y: 5}
+  projectile: {fileID: 7392628368932314452, guid: bd34f36c8864df246ab141dfb2bfb5b5, type: 3}
+  shootDistance: 1
+  shootSpeed: 300
+  shootCD: 0.8
 --- !u!4 &529765763
 Transform:
   m_ObjectHideFlags: 0
